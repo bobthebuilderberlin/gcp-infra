@@ -16,7 +16,7 @@ spec:
         app: andruschow
     spec:
       containers:
-      - name: andruschneow
+      - name: andruschow
         image: gcr.io/single-brace-265016/andruschow:https-forwarding
         ports:
         - containerPort: 8080
