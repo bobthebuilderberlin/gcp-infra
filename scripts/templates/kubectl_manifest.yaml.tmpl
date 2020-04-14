@@ -1,0 +1,4 @@
+resource "kubectl_manifest" "${FILE_SLUG}" {
+  yaml_body = file("${FILE}")
+}
+

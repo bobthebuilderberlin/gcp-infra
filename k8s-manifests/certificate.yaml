@@ -1,0 +1,7 @@
+apiVersion: networking.gke.io/v1beta1
+kind: ManagedCertificate
+metadata:
+  name: k8s-robertandruschow-de-certificate
+spec:
+  domains:
+  - k8s.robertandruschow.de

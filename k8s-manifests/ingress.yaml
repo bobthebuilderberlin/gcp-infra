@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: andruschow-ingress
+  namespace: default
+spec:
+  backend:
+    serviceName: andruschow-service
+    servicePort: 80
+  rules:
+  - host: k8s.robertandruschow.de
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: andruschow-service
+          servicePort: 80

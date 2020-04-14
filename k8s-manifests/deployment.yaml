@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: default
+  name: andruschow-deployment
+spec:
+  selector:
+    matchLabels:
+      app: andruschow
+  replicas: 1 # tells deployment to run 2 pods matching the template
+  template:
+    metadata:
+      labels:
+        app: andruschow
+    spec:
+      containers:
+      - name: andruschow
+        image: gcr.io/single-brace-265016/andruschow:minimal
+        ports:
+        - containerPort: 8080
