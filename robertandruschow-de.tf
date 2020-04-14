@@ -31,6 +31,8 @@ kind: Service
 metadata:
   namespace: default
   name: andruschow-service
+  annotations:
+#    cloud.google.com/neg: '{"ingress": true}'
 spec:
   type: NodePort
   selector:
@@ -42,6 +44,22 @@ spec:
 YAML
 }
 
+resource "google_compute_address" "static_ip" {
+  name = "k8s-robertandruschow-de-address"
+}
+
+resource "kubectl_manifest" "certificate" {
+  yaml_body = <<YAML
+apiVersion: networking.gke.io/v1beta1
+kind: ManagedCertificate
+metadata:
+  name: k8s-robertandruschow-de-certificate
+spec:
+  domains:
+    - k8s.robertandruschow.de
+YAML
+}
+
 resource "kubectl_manifest" "ingress" {
   yaml_body = <<YAML
 apiVersion: networking.k8s.io/v1beta1
@@ -50,15 +68,14 @@ metadata:
   name: andruschow-ingress
   namespace: default
 spec:
+  backend:
+    serviceName: andruschow-service
+    servicePort: 80
   rules:
   - host: k8s.robertandruschow.de
     http:
       paths:
       - path: /
-        backend:
-          serviceName: andruschow-service
-          servicePort: 80
-      - path: /static/*
         backend:
           serviceName: andruschow-service
           servicePort: 80
