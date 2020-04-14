@@ -1,7 +1,8 @@
-provider "google" {
-  project = "single-brace-265016"
-  region  = "europe-west1"
-  zone    = "europe-west1-b"
+terraform {
+  backend "gcs" {
+    bucket = "andruschow-infrastructure"
+    prefix = "terraform/state"
+  }
 }
 
 variable "ssh-public-key-location" {
