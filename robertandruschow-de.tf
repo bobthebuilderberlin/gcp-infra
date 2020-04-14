@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: andruschow
-        image: gcr.io/single-brace-265016/andruschow:https-forwarding
+        image: gcr.io/single-brace-265016/andruschow:minimal
         ports:
         - containerPort: 8080
 YAML
