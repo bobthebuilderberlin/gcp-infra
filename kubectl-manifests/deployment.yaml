@@ -15,6 +15,6 @@ spec:
     spec:
       containers:
       - name: andruschow
-        image: gcr.io/single-brace-265016/andruschow:minimal-v3
+        image: gcr.io/single-brace-265016/andruschow:2020-06-01
         ports:
         - containerPort: 8080
