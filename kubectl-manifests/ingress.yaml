@@ -3,12 +3,14 @@ kind: Ingress
 metadata:
   name: andruschow-ingress
   namespace: default
+  annotations:
+    networking.gke.io/managed-certificates: andruschow-de-certificate
 spec:
   backend:
     serviceName: andruschow-service
     servicePort: 80
   rules:
-  - host: k8s.robertandruschow.de
+  - host: andruschow.de
     http:
       paths:
       - path: /
